@@ -1137,11 +1137,20 @@ package feathers.layout
 				startIndexOffset = this._beforeVirtualizedItemCount;
 				positionX += (this._beforeVirtualizedItemCount * (calculatedTypicalItemWidth + this._gap));
 
-				endIndexOffset = index - items.length - this._beforeVirtualizedItemCount + 1;
-				if(endIndexOffset < 0)
-				{
-					endIndexOffset = 0;
-				}
+                if(index > this._beforeVirtualizedItemCount)
+                {
+                    endIndexOffset = index - items.length - this._beforeVirtualizedItemCount + 1;
+
+                    if(endIndexOffset < 0)
+                    {
+                        endIndexOffset = 0;
+                    }
+                }
+                else
+                {
+                    endIndexOffset = index - this._beforeVirtualizedItemCount;
+                }
+
 				positionX += (endIndexOffset * (calculatedTypicalItemWidth + this._gap));
 			}
 			index -= (startIndexOffset + endIndexOffset);
